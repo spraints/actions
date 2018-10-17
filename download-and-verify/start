@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -z "$URL" ]; then
+  cat "$(dirname "$0")/README.md"
+  exit 1
+fi
+
+set -e
+set -o nounset
+
+DEST="${DEST:-$(basename "$URL")}"
+echo Downloading "$URL" to "$DEST" ...
+curl -f -L -o "$DEST" "$URL"
+
+if [ -n "${SHA256SUM:-}" ]; then
+  echo Verifying checksum ...
+  echo "$SHA256SUM  $DEST" | sha256sum -c -
+else
+  echo Skipping verification.
+fi
+
+ls -l $DEST
