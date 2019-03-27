@@ -44,10 +44,10 @@ end
 
 now = Time.now.utc
 year    = time_parts.fetch(:year,   now.year)
-month   = time.parts.fetch(:month,  now.month)
-day     = time.parts.fetch(:day,    now.day)
-hour    = time.parts.fetch(:hour,   now.hour)
-minute  = time.parts.fetch(:minute, now.minute)
+month   = time_parts.fetch(:month,  now.month)
+day     = time_parts.fetch(:day,    now.day)
+hour    = time_parts.fetch(:hour,   now.hour)
+minute  = time_parts.fetch(:minute, now.minute)
 
 time_parts[:source_zone].each do |source_zone|
   source_time = source_zone.local_time(year, month, day, hour, minute, second)
