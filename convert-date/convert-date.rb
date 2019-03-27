@@ -5,7 +5,7 @@ require "octokit"
 require "time"
 
 event = JSON.load(File.read(ENV["GITHUB_EVENT_PATH"]))
-comment = event.fetch("comment")
+comment = event.fetch("comment").fetch("body")
 comments_url = event.fetch("issue").fetch("comments_url")
 
 list_zones = false
