@@ -57,5 +57,9 @@ time_parts[:source_zone].each do |source_zone|
   end
 end
 
-client = Octokit::Client.new(access_token: ENV["GITHUB_TOKEN"])
-client.post comments_url, body: output
+if output == ""
+  puts "Nothing to say!"
+else
+  client = Octokit::Client.new(access_token: ENV["GITHUB_TOKEN"])
+  client.post comments_url, body: output
+end
