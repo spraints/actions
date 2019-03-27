@@ -20,3 +20,12 @@ action "check debug" {
     TEST = "ok"
   }
 }
+
+workflow "date-converter" {
+  on = "issue_comment"
+  resolves = "convert date"
+}
+
+action "convert date" {
+  uses = "./convert-date"
+}
