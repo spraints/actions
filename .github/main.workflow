@@ -28,4 +28,5 @@ workflow "date-converter" {
 
 action "convert date" {
   uses = "./convert-date"
+  secrets = ["GITHUB_TOKEN"]
 }
