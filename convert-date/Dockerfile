@@ -1,8 +1,10 @@
-FROM ruby:latest
+FROM debian:stable-slim
+
+RUN apt-get update && apt-get install -y ruby
 
 RUN gem install octokit
 RUN gem install tzinfo
 
-COPY entrypoint /entrpoint
+COPY . /app/
 
-ENTRYPOINT ["/entrypoint"]
+ENTRYPOINT ["/app/entrypoint"]
