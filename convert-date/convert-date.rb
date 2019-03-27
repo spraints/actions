@@ -43,15 +43,16 @@ if list_zones
   output << "ZONES\n=====\n#{TZInfo::Timezone.all_identifiers.join("\n")}\n\n"
 end
 
-now = Time.now.utc
-year    = time_parts.fetch(:year,   now.year)
-month   = time_parts.fetch(:month,  now.month)
-day     = time_parts.fetch(:day,    now.day)
-hour    = time_parts.fetch(:hour,   now.hour)
-minute  = time_parts.fetch(:minute, now.min)
-
 time_parts[:source_zone].each do |source_zone|
+  now = source_zone.to_local(Time.now)
+  year    = time_parts.fetch(:year,   now.year)
+  month   = time_parts.fetch(:month,  now.month)
+  day     = time_parts.fetch(:day,    now.day)
+  hour    = time_parts.fetch(:hour,   now.hour)
+  minute  = time_parts.fetch(:minute, now.min)
+
   source_time = source_zone.local_time(year, month, day, hour, minute, 0)
+
   time_parts[:dest_zone].each do |dest_zone|
     dest_time = dest_zone.to_local(source_time)
     output << "#{source_time} => #{dest_time}\n"
