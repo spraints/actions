@@ -3,6 +3,7 @@
 require "json"
 require "octokit"
 require "time"
+require "tzinfo"
 
 event = JSON.load(File.read(ENV["GITHUB_EVENT_PATH"]))
 comment = event.fetch("comment").fetch("body")
